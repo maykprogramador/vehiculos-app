@@ -2,9 +2,6 @@ import React from 'react';
 
 export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom, gradientTo }) 
 {
-  const handleInputChange = (campo, valor) => { 
-    onChange(seccion, campo, valor);
-  }
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden animate-fadeIn hover:shadow-xl transition-shadow">
@@ -16,7 +13,7 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
       </div>
       <div className="p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
+          <div className="space-y-2 col-span-2">
             <label className="text-sm font-medium text-gray-700">Nombre</label>
             <input
               type="text"
@@ -25,18 +22,6 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
               onChange={(e) => onChange(seccion, "nombre", e.target.value)}
               required
               placeholder="Nombre"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Apellido</label>
-            <input
-              type="text"
-              className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
-              value={data.apellido}
-              onChange={(e) => onChange(seccion, "apellido", e.target.value)}
-              required
-              placeholder="Apellido"
             />
           </div>
 
@@ -64,7 +49,7 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 ">
             <label className="text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"

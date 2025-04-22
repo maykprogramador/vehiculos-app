@@ -1,64 +1,10 @@
 import { useState } from 'react';
 import { Car, User, Shield, FileText } from "lucide-react"
-
+import { useFormulario } from '../hooks/useFormulario.js';
 import { PersonaForm } from './PersonaForm.jsx';
 export function FormularioVehiculo({ onAgregar }) 
 {
-  const [formulario, setFormulario] = useState({
-    datos: {
-      vehiculo: { placa: '', marca: '', modelo: '',año: '' },
-      propietario: { nombre: '', documento: '', telefono: '', email: '' },
-      tenedor: { nombre: '', documento: '', telefono: '', email: '' },
-      conductor: { nombre: '', documento: '', telefono: '', email: '' }
-    } 
-  });
-
-  const handleChange = (seccion, campo, valor) => {
-    setFormulario((prev) => ({
-      ...prev,
-      datos: {
-        ...prev.datos,
-        [seccion]: {
-          ...prev.datos[seccion],
-          [campo]: valor,
-        },
-      },
-    }));
-  };
-  
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  
-    // Validar que todos los campos estén completos
-    const camposIncompletos = Object.entries(formulario.datos).some(([seccion, campos]) =>
-      Object.entries(campos).some(([campo, valor]) => !valor.trim())
-    );
-  
-    if (camposIncompletos) {
-      alert('Por favor, complete todos los campos del formulario.');
-      return;
-    }
-  
-    const nuevoVehiculo = {
-      ...formulario,
-      id: formulario.datos.vehiculo.placa,
-    };
-  
-    onAgregar(nuevoVehiculo);
-    resetFormulario();
-  };
- 
-  const resetFormulario = () => {
-    setFormulario({
-      datos: {
-      vehiculo: { placa: '', marca: '', modelo: '',año: '' },
-      propietario: { nombre: '', documento: '', telefono: '', email: ''  },
-      tenedor: { nombre: '', documento: '', telefono: '', email: '' },
-      conductor: { nombre: '', documento: '', telefono: '', email: '' },
-      }
-    });
-  };
+  const { formulario, handleChange, handleSubmit } = useFormulario(onAgregar);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
