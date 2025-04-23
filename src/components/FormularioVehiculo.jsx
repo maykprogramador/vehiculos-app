@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Car, User, Shield, FileText } from "lucide-react"
 import { useFormulario } from '../hooks/useFormulario.js';
 import { PersonaForm } from './PersonaForm.jsx';
-export function FormularioVehiculo({ onAgregar }) 
+export function FormularioVehiculo({ onAgregar, onEliminar }) 
 {
   const { formulario, handleChange, handleSubmit } = useFormulario(onAgregar);
 
@@ -10,9 +11,21 @@ export function FormularioVehiculo({ onAgregar })
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Registro de Vehículo</h1>
-          <p className="text-gray-600 mt-2">Complete la información en cada tarjeta</p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800">Registrar Vehículo</h1>
+            <p className="text-gray-600 mt-2">Complete la información en cada tarjeta</p>
+            <p></p>
+          </div>
+
+          {/* New Vehicle*/}
+          <div className="flex items-center space-x-4">
+            <div >
+              <NavLink className="px-4 py-2 rounded-lg font-medium text-sm bg-green-600 text-white hover:bg-blue-700" to="/lista"> Lista De Vehiculos
+              </NavLink>
+            </div>
+          </div>
+          
         </div>
 
         <form onSubmit={handleSubmit}>
