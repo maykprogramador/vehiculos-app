@@ -3,36 +3,17 @@ import { useState } from "react"
 import { NavLink } from 'react-router-dom';
 import { Car, Edit, Trash2, Eye, Search } from "lucide-react"
 import {VehicleDetailModal} from "./VehicleDetailModal.jsx"
+import { useListVehicles } from "../hooks/useListvehicles.js"
 
-export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
-  const [searchTerm, setSearchTerm] = useState("")
+export function ListofVehicles({ vehicles, eliminar }) {
+  const { searchTerm, updateSearchTerm, filteredVehicles, handleDelete } = useListVehicles({ vehicles, eliminar })
   const [selectedVehicle, setSelectedVehicle] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   
-  // Filtrar vehículos por término de búsqueda
-  const filteredVehicles = vehicles.filter((vehicle) => {
-    const termino = searchTerm.toLowerCase();
-  
-    return (
-      vehicle.datos.vehiculo.placa.toLowerCase().includes(termino) ||
-      vehicle.datos.vehiculo.marca.toLowerCase().includes(termino) ||
-      vehicle.datos.vehiculo.modelo.toLowerCase().includes(termino) ||
-      vehicle.datos.propietario.nombre.toLowerCase().includes(termino)
-    );
-  });
-
-  // Manejar la eliminación de un vehículo
-  const handleDelete = (id) => {
-    const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar este vehículo?");
-    if (confirmacion) {
-      eliminar(id);
-    }
-  };
-
   // Abrir modal con detalles del vehículo
   const openVehicleDetails = (vehicle) => {
     setSelectedVehicle(vehicle)
-    setIsModalOpen(true)
+    setIsModalOpen(true)  
   }
   
   return (
@@ -61,14 +42,14 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
                   placeholder="Buscar vehículo..."
                   className="pl-10 pr-4 py-2 w-full sm:w-64 border-0 bg-white rounded-lg shadow-md focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => updateSearchTerm(e.target.value)}
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Desktop Table View */}
+        {/* lista para dispositivos de escritorio*/}
         <div className="hidden md:block bg-white rounded-xl shadow-lg overflow-hidden mb-8 animate-fadeIn">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -110,16 +91,14 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
                     <td className="px-6 py-4 text-sm text-gray-700">{vehicle.datos.vehiculo.modelo}</td>
                     <td className="px-6 py-4 text-sm text-gray-700">{vehicle.datos.vehiculo.año}</td>
                     <td className="px-6 py-4 text-sm text-gray-700">
-                      {vehicle.datos.propietario.nombre} {vehicle.datos.propietario.apellido}
+                      {vehicle.datos.propietario.nombre}
                     </td>
                     <td className="px-6 py-4 text-sm text-right space-x-2">
-                      <button onClick={() => openVehicleDetails(vehicle)} title="Ver más" className="cursor-pointer text-emerald-600 hover:text-emerald-800 transition-colors">
+                      <button title="Ver más" onClick={() => openVehicleDetails(vehicle)} className="cursor-pointer text-emerald-600 hover:text-emerald-800 transition-colors">
                         <Eye className="inline-block w-5 h-5"/>
                       </button>
-                      <button className="text-blue-600 hover:text-blue-800 transition-colors">
-                        <Edit className="inline-block w-5 h-5" />
-                      </button>
-                      <button onClick={() => handleDelete(vehicle.id)} className="cursor-pointer text-red-600 hover:text-red-800 transition-colors">
+
+                      <button title="Eliminar" onClick={() => handleDelete(vehicle.id)} className="cursor-pointer text-red-600 hover:text-red-800 transition-colors">
                         <Trash2 className="inline-block w-5 h-5" />
                       </button>
                     </td>
@@ -130,7 +109,7 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
           </div>
         </div>
 
-        {/* Mobile Card View */}
+        {/* lista para dispositivos moviles */}
         <div className="md:hidden space-y-4">
           {filteredVehicles.map((vehicle) => (
             <div key={vehicle.id} className="bg-white rounded-xl shadow-md overflow-hidden animate-fadeIn hover:shadow-lg transition-shadow" >
@@ -141,13 +120,11 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
                     <h2 className="text-lg font-semibold text-white uppercase">{vehicle.datos.vehiculo.placa}</h2>
                   </div>
                   <div className="flex space-x-2">
-                    <button onClick={() => openVehicleDetails(vehicle)} className="text-white hover:text-gray-200 transition-colors">
+                    <button title="Ver más"  onClick={() => openVehicleDetails(vehicle)} className="text-white hover:text-gray-200 transition-colors">
                       <Eye className="w-5 h-5" />
                     </button>
-                    <button className="text-white hover:text-gray-200 transition-colors">
-                      <Edit className="w-5 h-5" />
-                    </button>
-                    <button onClick={() => handleDelete(vehicle.id)}className="text-white hover:text-gray-200 transition-colors">
+
+                    <button title="Eliminar" onClick={() => handleDelete(vehicle.id)}className="text-white hover:text-gray-200 transition-colors">
                       <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
@@ -170,7 +147,7 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
                   <div>
                     <p className="text-xs text-gray-500">Propietario</p>
                     <p className="text-sm font-medium">
-                      {vehicle.datos.propietario.nombre} {vehicle.datos.propietario.apellido}
+                      {vehicle.datos.propietario.nombre}
                     </p>
                   </div>
                 </div>
@@ -179,7 +156,7 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
           ))}
         </div>
 
-        {/* Empty State */}
+        {/* Validamos si hay algun vehiculo en el registro */}
         {filteredVehicles.length === 0 && (
           <div className="bg-white rounded-xl shadow-lg p-8 text-center">
             <Car className="w-16 h-16 mx-auto text-gray-300" />

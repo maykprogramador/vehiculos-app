@@ -2,7 +2,6 @@ import { Car, User, Shield, FileText } from "lucide-react"
 
 export function VehicleForm ({data, handleChange }) {
 
-
   return(
     <div className="bg-white rounded-xl shadow-lg overflow-hidden animate-fadeIn hover:shadow-xl transition-shadow">
       <div className="bg-gradient-to-r from-emerald-500 to-teal-600 py-4 px-6">
