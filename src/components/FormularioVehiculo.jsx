@@ -109,17 +109,6 @@ export function FormularioVehiculo({ onAgregar, onEliminar })
             <button type="submit" className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-3 rounded-lg hover:from-emerald-600 hover:to-teal-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 font-medium" > Guardar Vehículo </button>
           </div>
         </form>
-
-        {/* Debug Panel - Can be removed in production */}
-        <div className="bg-white rounded-xl shadow-lg p-6 overflow-hidden mb-8">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-medium text-gray-700">Datos del Formulario</h3>
-            <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Debug</span>
-          </div>
-          <pre className="bg-gray-50 text-gray-700 p-4 rounded-lg overflow-auto text-sm">
-            {JSON.stringify(formulario, null, 2)}
-          </pre>
-        </div>
       </div>
     </div>
   )

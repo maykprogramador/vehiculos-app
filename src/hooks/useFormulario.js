@@ -52,8 +52,8 @@ export function useFormulario(onAgregar) {
     };
 
     onAgregar(nuevoVehiculo);
-    alert('Vehículo registrado exitosamente!');
     resetFormulario();
+    alert('Vehículo registrado exitosamente!');
   };
 
   return {
