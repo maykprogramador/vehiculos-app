@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Car, User, Shield, FileText } from "lucide-react"
 import { useFormulario } from '../hooks/useFormulario.js';
+import { VehicleForm } from './VehicleForm.jsx';
 import { PersonaForm } from './PersonaForm.jsx';
-export function FormularioVehiculo({ onAgregar, onEliminar }) 
+export function FormularioVehiculo({ onAgregar}) 
 {
   const { formulario, handleChange, handleSubmit } = useFormulario(onAgregar);
 
@@ -17,11 +18,11 @@ export function FormularioVehiculo({ onAgregar, onEliminar })
             <p className="text-gray-600 mt-2">Complete la información en cada tarjeta</p>
             <p></p>
           </div>
-
           {/* New Vehicle*/}
           <div className="flex items-center space-x-4">
             <div >
-              <NavLink className="px-4 py-2 rounded-lg font-medium text-sm bg-green-600 text-white hover:bg-blue-700" to="/lista"> Lista De Vehiculos
+              <NavLink to="/lista" className="px-4 py-2 rounded-lg font-medium text-sm bg-green-600 text-white hover:bg-blue-700" > 
+              Lista De Vehiculos
               </NavLink>
             </div>
           </div>
@@ -32,66 +33,7 @@ export function FormularioVehiculo({ onAgregar, onEliminar })
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Vehicle Card */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden animate-fadeIn hover:shadow-xl transition-shadow">
-              <div className="bg-gradient-to-r from-emerald-500 to-teal-600 py-4 px-6">
-                <div className="flex items-center space-x-2">
-                  <Car className="w-5 h-5 text-white" />
-                  <h2 className="text-xl font-semibold text-white">Datos del Vehículo</h2>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Placa</label>
-                    <input
-                      type="text"
-                      className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all uppercase"
-                      value={formulario.datos.vehiculo.placa}
-                      onChange={(e) => handleChange("vehiculo", "placa", e.target.value)}
-                      required
-                      placeholder="ABC-123"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Marca</label>
-                    <input
-                      type="text"
-                      className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
-                      value={formulario.datos.vehiculo.marca}
-                      onChange={(e) => handleChange("vehiculo", "marca", e.target.value)}
-                      required
-                      placeholder="Toyota, Chevrolet, etc."
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Modelo</label>
-                    <input
-                      type="text"
-                      className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
-                      value={formulario.datos.vehiculo.modelo}
-                      onChange={(e) => handleChange("vehiculo", "modelo", e.target.value)}
-                      required
-                      placeholder="Corolla, Spark, etc."
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Año</label>
-                    <input
-                      type="number"
-                      min={1900}
-                      max={new Date().getFullYear()}
-                      className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
-                      value={formulario.datos.vehiculo.año}
-                      onChange={(e) => handleChange("vehiculo", "año", e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <VehicleForm title="Datos del Vehículo" seccion="vehiculo" data={formulario.datos.vehiculo} handleChange={handleChange} icon={<Car className="w-5 h-5 text-white" />} gradientFrom="emerald-500" gradientTo="teal-600" />
 
             {/* Owner Card */}
             <PersonaForm title="Datos del Propietario" seccion="propietario" data={formulario.datos.propietario} onChange={handleChange} icon={<User className="w-5 h-5 text-white" />} gradientFrom="emerald-500" gradientTo="teal-600" />

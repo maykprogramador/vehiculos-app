@@ -2,9 +2,13 @@
 import { useState } from "react"
 import { NavLink } from 'react-router-dom';
 import { Car, Edit, Trash2, Eye, Search } from "lucide-react"
+import {VehicleDetailModal} from "./VehicleDetailModal.jsx"
 
 export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
   const [searchTerm, setSearchTerm] = useState("")
+  const [selectedVehicle, setSelectedVehicle] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  
   // Filtrar vehículos por término de búsqueda
   const filteredVehicles = vehicles.filter((vehicle) => {
     const termino = searchTerm.toLowerCase();
@@ -24,6 +28,12 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
       eliminar(id);
     }
   };
+
+  // Abrir modal con detalles del vehículo
+  const openVehicleDetails = (vehicle) => {
+    setSelectedVehicle(vehicle)
+    setIsModalOpen(true)
+  }
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
@@ -33,33 +43,29 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
           <div>
             <h1 className="text-3xl font-bold text-gray-800">Vehículos Registrados</h1>
           </div>
-
           {/* New Vehicle*/}
-          <div className="flex items-center space-x-4">
-            <div >
-              <NavLink to="/registro"
-              className={({ isActive }) =>
-                isActive
-                  ? "px-4 py-2 rounded-lg font-medium text-sm bg-green-600 text-white shadow"
-                  : "px-4 py-2 rounded-lg font-medium text-sm bg-blue-400 text-white hover:bg-blue-700"
-              } > Registrar Vehiculo
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-4">
+            {/* Botón de Registrar Vehículo */}
+            <div className="w-full sm:w-auto">
+              <NavLink to="/registro" className= "block text-center w-full sm:w-auto px-4 py-2 rounded-lg font-medium text-sm bg-blue-400 text-white hover:bg-blue-700" >
+                Registrar Vehículo
               </NavLink>
             </div>
-            
-            <div className="mt-4 md:mt-0 relative">
+
+            {/* Barra de Búsqueda */}
+            <div className="w-full sm:w-auto relative">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
                   placeholder="Buscar vehículo..."
-                  className="pl-10 pr-4 py-2 border-0 bg-white rounded-lg shadow-md focus:ring-2 focus:ring-emerald-500 focus:outline-none w-full md:w-64"
+                  className="pl-10 pr-4 py-2 w-full sm:w-64 border-0 bg-white rounded-lg shadow-md focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
             </div>
           </div>
-          
         </div>
 
         {/* Desktop Table View */}
@@ -68,14 +74,12 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
             <table className="w-full">
               <thead>
                 <tr className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white">
-                  <th
-                    className="px-6 py-3 text-left text-sm font-medium cursor-pointer" >
+                  <th className="px-6 py-3 text-left text-sm font-medium cursor-pointer" >
                     <div className="flex items-center space-x-1">
                       <span>Placa</span> 
                     </div>
                   </th>
-                  <th
-                    className="px-6 py-3 text-left text-sm font-medium cursor-pointer" >
+                  <th className="px-6 py-3 text-left text-sm font-medium cursor-pointer" >
                     <div className="flex items-center space-x-1">
                       <span>Marca</span> 
                     </div>
@@ -85,8 +89,7 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
                       <span>Modelo</span> 
                     </div>
                   </th>
-                  <th
-                    className="px-6 py-3 text-left text-sm font-medium cursor-pointer" >
+                  <th className="px-6 py-3 text-left text-sm font-medium cursor-pointer" >
                     <div className="flex items-center space-x-1">
                       <span>Año</span> 
                     </div>
@@ -110,7 +113,7 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
                       {vehicle.datos.propietario.nombre} {vehicle.datos.propietario.apellido}
                     </td>
                     <td className="px-6 py-4 text-sm text-right space-x-2">
-                      <button className="text-emerald-600 hover:text-emerald-800 transition-colors">
+                      <button onClick={() => openVehicleDetails(vehicle)} title="Ver más" className="cursor-pointer text-emerald-600 hover:text-emerald-800 transition-colors">
                         <Eye className="inline-block w-5 h-5"/>
                       </button>
                       <button className="text-blue-600 hover:text-blue-800 transition-colors">
@@ -138,13 +141,13 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
                     <h2 className="text-lg font-semibold text-white uppercase">{vehicle.datos.vehiculo.placa}</h2>
                   </div>
                   <div className="flex space-x-2">
-                    <button className="text-white hover:text-gray-200 transition-colors">
+                    <button onClick={() => openVehicleDetails(vehicle)} className="text-white hover:text-gray-200 transition-colors">
                       <Eye className="w-5 h-5" />
                     </button>
                     <button className="text-white hover:text-gray-200 transition-colors">
                       <Edit className="w-5 h-5" />
                     </button>
-                    <button className="text-white hover:text-gray-200 transition-colors">
+                    <button onClick={() => handleDelete(vehicle.id)}className="text-white hover:text-gray-200 transition-colors">
                       <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
@@ -184,6 +187,13 @@ export function ListofVehicles({ vehicles = sampleVehicles, eliminar }) {
             <p className="mt-2 text-gray-500">No se encontraron vehículos que coincidan con tu búsqueda.</p>
           </div>
         )}
+
+        {/* Modal de detalles simplificado */}
+        <VehicleDetailModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          vehicle={selectedVehicle}
+        />
       </div>
     </div>
   )

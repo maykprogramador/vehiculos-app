@@ -29,6 +29,9 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
             <label className="text-sm font-medium text-gray-700">Documento</label>
             <input
               type="text"
+              pattern="\d{3,10}"
+              title="El documento debe contener entre 3 y 10 dígitos."
+              maxLength={10}
               className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
               value={data.documento}
               onChange={(e) => onChange(seccion, "documento", e.target.value)}
@@ -41,6 +44,9 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
             <label className="text-sm font-medium text-gray-700">Teléfono</label>
             <input
               type="tel"
+              pattern="\d{7,10}"
+              title="El teléfono debe contener dígitos numericos."
+              maxLength={10}
               className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
               value={data.telefono}
               onChange={(e) => onChange(seccion, "telefono", e.target.value)}
@@ -49,10 +55,11 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
             />
           </div>
 
-          <div className="space-y-2 ">
+          <div className="space-y-2 col-span-2">
             <label className="text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
+              title="El correo electrónico debe tener un formato válido."
               className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
               value={data.email}
               onChange={(e) => onChange(seccion, "email", e.target.value)}
