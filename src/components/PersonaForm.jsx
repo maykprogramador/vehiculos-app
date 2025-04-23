@@ -45,7 +45,7 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
             <input
               type="tel"
               pattern="\d{7,10}"
-              title="El teléfono debe contener dígitos numericos."
+              title="El teléfono debe contener al menos 7 dígitos."
               maxLength={10}
               className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
               value={data.telefono}
