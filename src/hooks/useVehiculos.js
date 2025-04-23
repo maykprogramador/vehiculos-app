@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import vehiclesData from './mocks/vehicles-prueba.json';
+import vehiclesData from '../mocks/vehicles-prueba.json';
 
 export function useVehiculos() {
-  const [vehiculos, setVehiculos] = useState([
-    
-  ]);
+  const [vehiculos, setVehiculos] = useState([]);
 
   useEffect(() => {
     const almacenados = JSON.parse(localStorage.getItem('vehiculos')) || vehiclesData;
