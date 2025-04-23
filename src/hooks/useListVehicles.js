@@ -11,7 +11,6 @@ export function useListVehicles({vehicles, eliminar}) {
       vehicle.datos.vehiculo.placa.toLowerCase().includes(termino) ||
       vehicle.datos.vehiculo.marca.toLowerCase().includes(termino) ||
       vehicle.datos.vehiculo.modelo.toLowerCase().includes(termino) ||
-      vehicle.datos.vehiculo.modelo.toLowerCase().includes(termino) ||
       vehicle.datos.propietario.nombre.toLowerCase().includes(termino)
     );
   });
