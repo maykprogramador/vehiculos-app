@@ -44,20 +44,23 @@ http://localhost:5173
 ## 📂 Estructura del proyecto
 
 src/
-├── components/
-│   ├── FormularioVehiculo.jsx
-│   ├── ListaVehiculos.jsx
-│   └── VehiculoCard.jsx
-├── hooks/
-│   ├── useVehiculos.js
-│   └── mocks/vehicles-prueba.json
-├── pages/
-│   ├── Home.jsx
-│   └── Registrar.jsx
-├── App.jsx
-├── main.jsx
-└── index.css
-
+  components/
+    FormularioVehiculo.jsx
+    ListaVehiculos.jsx
+    VehiculoCard.jsx
+   css/
+     App.css
+     form-animations.css
+     form-styles.css
+   hooks/
+     useVehiculos.js
+     useFormulario.js
+     useVehiculos.js
+   mocks/
+     mocks/vehicles-prueba.json
+   App.jsx
+   main.jsx
+   index.css
 
 ---
 
