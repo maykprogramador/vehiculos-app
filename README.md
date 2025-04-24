@@ -21,22 +21,22 @@ Sigue estos pasos para ejecutarlo localmente:
 
 1. Clona este repositorio:
 
-git clone https://github.com/maykprogramador/vehiculos-app.git
-cd vehiculos-app
+-git clone https://github.com/maykprogramador/vehiculos-app.git
 
+-cd vehiculos-app
 
 2. Instala las dependencias:
 
-npm install
+-npm install
 
 3. Inicia el servidor de desarrollo:
 
-npm run dev
+-npm run dev
 
 
 4. Abre en tu navegador:
 
-http://localhost:5173
+-http://localhost:5173
 
 
 ---
