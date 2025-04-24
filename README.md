@@ -1,12 +1,78 @@
-# React + Vite
+# 🚗 Plataforma de Registro de Vehículos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web básica construida con React. Permite registrar, visualizar y eliminar vehículos, incluyendo información de propietario, tenedor y conductor. Los datos se almacenan localmente en el navegador usando localStorage y datos mock (simulados).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧰 Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- ⚛️ React (con functional components y hooks)
+- 🧠 Custom Hooks (useVehiculos)
+- 🛣️ React Router
+- 💨 Tailwind CSS
+- 🧪 Datos mock en JSON
+- 🗃️ Persistencia en localStorage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 ¿Cómo ejecutar este proyecto?
+
+Sigue estos pasos para ejecutarlo localmente:
+
+1. Clona este repositorio:
+
+git clone https://github.com/maykprogramador/vehiculos-app.git
+cd vehiculos-app
+
+
+2. Instala las dependencias:
+
+npm install
+
+3. Inicia el servidor de desarrollo:
+
+npm run dev
+
+
+4. Abre en tu navegador:
+
+http://localhost:5173
+
+
+---
+
+## 📂 Estructura del proyecto
+
+src/
+├── components/
+│   ├── FormularioVehiculo.jsx
+│   ├── ListaVehiculos.jsx
+│   └── VehiculoCard.jsx
+├── hooks/
+│   ├── useVehiculos.js
+│   └── mocks/vehicles-prueba.json
+├── pages/
+│   ├── Home.jsx
+│   └── Registrar.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
+
+
+---
+
+## 📝 Características principales
+
+- Añadir un nuevo vehículo con sus datos relacionados.
+- Visualizar la lista de vehículos registrados.
+- Eliminar vehículos individualmente.
+- Persistencia de datos en localStorage.
+- Diseño responsivo y moderno con Tailwind CSS.
+- Navegación con React Router entre vistas.
+
+---
+
+## 👨‍💻 Autor
+
+- Desarrollado por Maykol Stiveen Plaza Castrillon como prueba técnica.
+- Portafolio / GitHub: https://github.com/maykprogramador

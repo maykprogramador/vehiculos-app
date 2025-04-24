@@ -19,7 +19,7 @@ export function FormularioVehiculo({ onAgregar})
             <p></p>
           </div>
           {/* New Vehicle*/}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mt-4">
             <div >
               <NavLink to="/lista" className="px-4 py-2 rounded-lg font-medium text-sm bg-green-600 text-white hover:bg-blue-700" > 
               Lista De Vehiculos

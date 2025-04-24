@@ -5,8 +5,7 @@ import { ListofVehicles } from './components/ListofVehicles.jsx';
 
 function App() {
   const { vehiculos, agregarVehiculo, eliminarVehiculo } = useVehiculos();
-  console.log("renderiza app");
-  
+
   return (
     <Router>
       <div className="min-h-screen bg-gray-50 px-4 py-6">

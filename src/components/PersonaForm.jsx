@@ -2,7 +2,8 @@ import React from 'react';
 
 export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom, gradientTo }) 
 {
-
+  const inputClass = "w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all";
+  
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden animate-fadeIn hover:shadow-xl transition-shadow">
       <div className={`bg-gradient-to-r from-${gradientFrom} to-${gradientTo} py-4 px-6`}>
@@ -17,7 +18,7 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
             <label className="text-sm font-medium text-gray-700">Nombre</label>
             <input
               type="text"
-              className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
+              className={inputClass}
               value={data.nombre}
               onChange={(e) => onChange(seccion, "nombre", e.target.value)}
               required
@@ -32,7 +33,7 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
               pattern="\d{3,10}"
               title="El documento debe contener entre 3 y 10 dígitos."
               maxLength={10}
-              className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
+              className={inputClass}
               value={data.documento}
               onChange={(e) => onChange(seccion, "documento", e.target.value)}
               required
@@ -47,7 +48,7 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
               pattern="\d{7,10}"
               title="El teléfono debe contener al menos 7 dígitos."
               maxLength={10}
-              className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
+              className={inputClass}
               value={data.telefono}
               onChange={(e) => onChange(seccion, "telefono", e.target.value)}
               required
@@ -60,7 +61,7 @@ export function PersonaForm({ title, seccion, data, onChange, icon, gradientFrom
             <input
               type="email"
               title="El correo electrónico debe tener un formato válido."
-              className="w-full border-0 bg-gray-50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all"
+              className={inputClass}
               value={data.email}
               onChange={(e) => onChange(seccion, "email", e.target.value)}
               required

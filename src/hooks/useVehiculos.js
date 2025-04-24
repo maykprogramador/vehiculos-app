@@ -7,6 +7,7 @@ export function useVehiculos() {
   useEffect(() => {
     const almacenados = JSON.parse(localStorage.getItem('vehiculos')) || vehiclesData;
     setVehiculos(almacenados);
+    console.log("se ejecuta el useEffect de vehiculos");
   }, []);
 
   useEffect(() => {
@@ -18,7 +19,6 @@ export function useVehiculos() {
   };
 
   const eliminarVehiculo = (id) => {
-    console.log("id", id);
     setVehiculos((prev) => prev.filter((v) => v.id !== id));
   };
 
