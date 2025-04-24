@@ -6,7 +6,7 @@ import {VehicleDetailModal} from "./VehicleDetailModal.jsx"
 import { useListVehicles } from "../hooks/useListvehicles.js"
 
 export function ListofVehicles({ vehicles, eliminar }) {
-  const { searchTerm, updateSearchTerm, filteredVehicles, handleDelete } = useListVehicles({ vehicles, eliminar })
+  const {searchTerm, updateSearchTerm, filteredVehicles, handleDelete } = useListVehicles({ vehicles, eliminar })
   const [selectedVehicle, setSelectedVehicle] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   

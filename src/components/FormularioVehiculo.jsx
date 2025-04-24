@@ -50,6 +50,7 @@ export function FormularioVehiculo({ onAgregar})
           <div className="flex justify-center mb-8">
             <button type="submit" className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-3 rounded-lg hover:from-emerald-600 hover:to-teal-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 font-medium" > Guardar Vehículo </button>
           </div>
+     
         </form>
       </div>
     </div>
